@@ -1,19 +1,13 @@
 <?php
 
-include_once "config.php";
+include_once "_config/config.php";
 
-$sql = "SELECT * FROM pt";
-$result = $mysqli->query($sql);
+if(isset($_GET['action'])) {
+    include_once "actions/" . $_GET['action'] . ".php";
+}
 
-// Fetch all
-$data = $result->fetch_all(MYSQLI_ASSOC);
-
-
-
-
-// die();
-
-
-
-
-include_once $_GET['page'] . ".php";
+if(isset($_GET['page'])) {
+    include_once "pages/" . $_GET['page'] . ".php";
+} else {
+    include_once "pages/home.php";
+}
